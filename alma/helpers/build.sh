@@ -19,7 +19,8 @@ dnf install -y --allowerasing \
     less \
     man-db \
     bind-utils \
-    net-tools
+    net-tools \
+    passwd
 
 
 # disable services we do not need
