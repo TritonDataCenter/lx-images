@@ -91,6 +91,14 @@ systemctl enable create_hosts_file.service
 cp remove_dockerenv_file.service /etc/systemd/system
 systemctl enable remove_dockerenv_file.service
 
+# Revert systemd's tcp wrapper for ssh. This really only applies to 24.04,
+# but won't cause a failure on earlier versions.
+systemctl disable --now ssh.socket
+rm -f /etc/systemd/system/ssh.service.d/00-socket.conf
+rm -f /etc/systemd/system/ssh.socket.d/addresses.conf
+systemctl daemon-reload
+systemctl enable --now ssh.service
+
 # Remove the divert that disables services
 rm -f /sbin/initctl
 dpkg-divert --local --rename --remove /sbin/initctl
