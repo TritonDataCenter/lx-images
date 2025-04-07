@@ -46,10 +46,10 @@ cp locale /etc/default/locale
 locale-gen
 
 # make sure we get fresh ssh keys on first boot
-rm -fv /etc/ssh/ssh_host_*_key*
 cp rc.keys.ssh /etc/init.d/keys.ssh
 chmod +x /etc/init.d/keys.ssh
 update-rc.d keys.ssh defaults
+rm -fv /etc/ssh/ssh_host_*_key*
 
 #
 #mv /usr/share/dbus-1/system-services/org.freedesktop.login1.service{,~}
